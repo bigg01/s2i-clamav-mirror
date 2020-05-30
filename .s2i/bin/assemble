@@ -31,12 +31,7 @@ for f in $CLAMAV_FILES
  do
     REMOTE_FILE=${CLAMAV_MIRROR/${f}
     echo "$REMOTE_FILE"
-    #curl -L "${CLAMAV_MIRROR/${f}" --output "${f}" --silent
-    #echo "curl -L \"${CLAMAV_MIRROR/${f}\" --output \"${f}\" --silent"
-    #rc=$(($rc + $?)) 
-    #cp -pv ${f} ./ 
-    #rc=$(($rc + $?))
-    #rm -f ${f}
+    curl -L "$REMOTE_FILE" --output ./${f} --silent
 done
 
 # Fix source directory permissions
