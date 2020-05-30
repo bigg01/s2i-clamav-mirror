@@ -44,8 +44,16 @@ for f in $CLAMAV_FILES
 done
 
 cat <<EOF >./index.html
+<!doctype html>
+<html lang="de">
+    <head>
+<title>clamav mirror</title>
+    </head>
+    <body>
 $(date)
-ls -alrht ./
+(ls -alrht ./)
+    </body>
+</html>
 EOF
 
 
