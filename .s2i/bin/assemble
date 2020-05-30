@@ -1,0 +1,45 @@
+#!/bin/bash
+echo "Before assembling"
+
+/usr/libexec/s2i/assemble
+rc=$?
+
+if [ $rc -eq 0 ]; then
+    echo "After successful assembling"
+else
+    echo "After failed assembling"
+fi
+
+echo "---> Getting ClamAV files"
+
+FILES="https://database.clamav.net/main.cvd
+https://database.clamav.net/daily.cvd
+https://database.clamav.net/bytecode.cvd"
+
+mkdir database/
+cd database
+for f  in $FILES
+ do
+ wget $f
+ rc=$rc + $?
+done
+cd -
+
+cp -pv database/* ./
+rc=$rc + $?
+
+rm -rf database/
+rc=$rc + $?
+
+# Fix source directory permissions
+fix-permissions ./
+rc=$?
+
+
+if [ $rc -eq 0 ]; then
+    echo "ClamAV get files successfull"
+else
+    echo "ClamAV get files failed"
+fi
+
+exit $rc
