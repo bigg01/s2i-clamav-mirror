@@ -20,7 +20,7 @@ mkdir database/
 cd database
 for f  in $FILES
  do
- curl -fsSL "${f}" 
+ curl -sL "${f}" 
 
  rc=$rc + $?
 done
