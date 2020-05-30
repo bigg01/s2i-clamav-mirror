@@ -31,15 +31,15 @@ for f in $CLAMAV_FILES
  do
     #curl -L "${CLAMAV_MIRROR/${f}" --output "${f}" --silent
     echo "curl -L \"${CLAMAV_MIRROR/${f}\" --output \"${f}\" --silent"
-    rc=$(($rc + $?)) 
-    cp -pv ${f} ./ 
-    rc=$(($rc + $?))
-    rm -f ${f}
+    #rc=$(($rc + $?)) 
+    #cp -pv ${f} ./ 
+    #rc=$(($rc + $?))
+    #rm -f ${f}
 done
 
 # Fix source directory permissions
 fix-permissions ./
-rc=$(($rc + $?))    
+#rc=$(($rc + $?))    
 
 echo $rc
 
