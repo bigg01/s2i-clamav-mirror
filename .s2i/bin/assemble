@@ -23,6 +23,9 @@ echo "files: $CLAMAV_FILES"
 CLAMAV_MIRROR="https://database.clamav.net"
 
 echo "from mirror: $CLAMAV_MIRROR"
+rc=$(($rc + $?))
+
+echo $rc
 
 for f in $CLAMAV_FILES
  do
