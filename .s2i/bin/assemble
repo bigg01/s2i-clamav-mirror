@@ -43,10 +43,10 @@ fix-permissions ./
 
 echo $rc
 
-if [ $rc -eq 0 ]; then
-    echo "ClamAV get files successfull"
-else
-    echo "ClamAV get files failed"
-fi
+#if [ $rc -eq 0 ]; then
+#    echo "ClamAV get files successfull"
+#else
+#    echo "ClamAV get files failed"
+#fi
 
 exit $rc
