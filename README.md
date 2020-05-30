@@ -16,52 +16,14 @@ https://database.clamav.net/bytecode.cvd
 
 ```
 
-
+```
 oc new-project ocp4-clamav-mirror
 
-s2i 
-
-centos/nginx-116-centos7
+s2i build https://github.com/bigg01/s2i-clamav-mirror.git centos/nginx-116-centos7:latest clamav-mirror
 
 
-oc import-image --from="centos/nginx-116-centos7" --scheduled=true golang --confirm
+oc import-image --from="centos/nginx-116-centos7" --scheduled=true ngnix --confirm
 
 
-oc new-app https://github.com/bigg01/go-s2i-centos7.git --docker-image=centos/nginx-116-centos7:latest --context-dir=test-app
-
-  oc new-build . --docker-image=repo/langimage
-
-FILES="https://database.clamav.net/main.cvd
-https://database.clamav.net/daily.cvd
-https://database.clamav.net/bytecode.cvd"
-
-mkdir database/
-cd database
-for f  in $FILES
-do
-wget $f
-done
-
-
-oc new-build database --docker-image=centos/nginx-116-centos7:latest
-
-oc new-app . --docker-image=centos/nginx-116-centos7:latest
-
-
-oc new-build   --docker-image=centos/nginx-116-centos7:latest --name mirror --binary --strategy docker
-
-oc start-build cookbook --from-dir=.
-
-
-s2i build https://github.com/bigg01/s2i-clamav-mirror.git --docker-image=centos/nginx-116-centos7:latest clamav-mirror
-
-
- s2i build https://github.com/bigg01/s2i-clamav-mirror.git centos/nginx-116-centos7:latest clamav-mirror
-
-
-
- s2i build https://github.com/bigg01/s2i-clamav-mirror.git centos/nginx-116-centos7:latest clamav-mirror
----> Installing application source
----> Copying nginx start-hook scripts...
-Build completed successfully
- docker run -it --rm clamav-mirror  /bin/ls 
+oc new-app ngnix~https://github.com/bigg01/s2i-clamav-mirror.git clamav-mirror
+```
