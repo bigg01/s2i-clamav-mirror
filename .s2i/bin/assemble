@@ -14,19 +14,15 @@ else
     echo "After failed assembling"
 fi
 
-
-echo "--> check HTTP PROXY Set"
 if [ -n "$HTTTP_PROXY" ]; then
-  echo "Set : ${HTTTP_PROXY}"
+  echo "Set http_proxy: ${HTTTP_PROXY}"
   export http_proxy=${HTTTP_PROXY}
 fi
 
 if [ -n "$HTTPS_PROXY" ]; then
-  echo "Set : ${HTTP_PROXY}"
+  echo "Set https_proxy: ${HTTP_PROXY}"
   export https_proxy=${HTTPS_PROXY}
 fi
-
-
 
 echo "---> Getting ClamAV files"
 
