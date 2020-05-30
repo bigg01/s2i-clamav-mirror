@@ -12,15 +12,15 @@ fi
 
 echo "---> Getting ClamAV files"
 
-FILES="https://database.clamav.net/main.cvd
-https://database.clamav.net/daily.cvd
-https://database.clamav.net/bytecode.cvd"
+FILES="main.cvd daily.cvd bytecode.cvd"
+CLAMAV_MIRROR=${CLAMAV_MIRROR_REMOTE:-"https://database.clamav.net"}
+
 
 mkdir database/
 cd database
 for f  in $FILES
  do
- curl -sL "${f}" 
+ curl -L "${CLAMAV_MIRROR/${f}" --output "${f}" --silent 
 
  rc=$rc + $?
 done
