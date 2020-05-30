@@ -12,13 +12,13 @@ fi
 
 echo "---> Getting ClamAV files"
 
-FILES="main.cvd daily.cvd bytecode.cvd"
+CLAMAV_FILES="main.cvd daily.cvd bytecode.cvd"
 CLAMAV_MIRROR=${CLAMAV_MIRROR_REMOTE:-"https://database.clamav.net"}
 
 
 mkdir database/
 cd database
-for f  in $FILES
+for f  in $CLAMAV_FILES
  do
  curl -L "${CLAMAV_MIRROR/${f}" --output "${f}" --silent 
 
@@ -34,7 +34,7 @@ rc=$rc + $?
 
 # Fix source directory permissions
 fix-permissions ./
-rc=$?
+rc=$rc + $?
 
 
 if [ $rc -eq 0 ]; then
