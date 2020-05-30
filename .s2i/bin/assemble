@@ -51,7 +51,7 @@ cat <<EOF >./index.html
     </head>
     <body>
 $(date)
-(ls -alrht ./)
+$(ls  ./)
     </body>
 </html>
 EOF
