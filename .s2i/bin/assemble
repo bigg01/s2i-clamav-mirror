@@ -43,6 +43,12 @@ for f in $CLAMAV_FILES
     rc=$(($rc + $?))
 done
 
+cat <<EOF >./index.html
+$(date)
+ls -alrht ./
+EOF
+
+
 # Fix source directory permissions
 fix-permissions ./
 rc=$(($rc + $?))    
