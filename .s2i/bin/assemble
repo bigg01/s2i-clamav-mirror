@@ -16,34 +16,31 @@ fi
 
 echo "---> Getting ClamAV files"
 
-CLAMAV_FILES="main.cvd daily.cvd bytecode.cvd"
+CLAMAV_FILES=${CLAMAV_FILES:-"main.cvd daily.cvd bytecode.cvd"}
 
 echo "files: $CLAMAV_FILES"
-#CLAMAV_MIRROR=${CLAMAV_MIRROR_REMOTE:-"https://database.clamav.net"}
-CLAMAV_MIRROR="https://database.clamav.net"
+CLAMAV_MIRROR=${CLAMAV_MIRROR:-"https://database.clamav.net"}
+#CLAMAV_MIRROR="https://database.clamav.net"
 
 echo "from mirror: $CLAMAV_MIRROR"
 rc=$(($rc + $?))
 
-echo $rc
-
 for f in $CLAMAV_FILES
  do
-    REMOTE_FILE=${CLAMAV_MIRROR/${f}
+    REMOTE_FILE="${CLAMAV_MIRROR}/${f}"
     echo "$REMOTE_FILE"
     curl -L "$REMOTE_FILE" --output ./${f} --silent
+    rc=$(($rc + $?))
 done
 
 # Fix source directory permissions
 fix-permissions ./
-#rc=$(($rc + $?))    
+rc=$(($rc + $?))    
 
-echo $rc
-
-#if [ $rc -eq 0 ]; then
-#    echo "ClamAV get files successfull"
-#else
-#    echo "ClamAV get files failed"
-#fi
+if [ $rc -eq 0 ]; then
+    echo "ClamAV get files successfull"
+else
+    echo "ClamAV get files failed"
+fi
 
 exit $rc
