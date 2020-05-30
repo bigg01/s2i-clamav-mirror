@@ -20,7 +20,8 @@ mkdir database/
 cd database
 for f  in $FILES
  do
- wget $f
+ curl -fsSL "${f}" 
+
  rc=$rc + $?
 done
 cd -
