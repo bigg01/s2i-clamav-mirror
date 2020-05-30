@@ -29,7 +29,7 @@ echo $rc
 
 for f in $CLAMAV_FILES
  do
-    REMOTE_FILE="${CLAMAV_MIRROR\/${f}"
+    REMOTE_FILE=${CLAMAV_MIRROR/${f}
     echo "$REMOTE_FILE"
     #curl -L "${CLAMAV_MIRROR/${f}" --output "${f}" --silent
     #echo "curl -L \"${CLAMAV_MIRROR/${f}\" --output \"${f}\" --silent"
