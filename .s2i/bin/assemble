@@ -15,26 +15,18 @@ echo "---> Getting ClamAV files"
 CLAMAV_FILES="main.cvd daily.cvd bytecode.cvd"
 CLAMAV_MIRROR=${CLAMAV_MIRROR_REMOTE:-"https://database.clamav.net"}
 
-rc=0
-
-mkdir database/
-cd database
-for f  in $CLAMAV_FILES
+for f in $CLAMAV_FILES
  do
- curl -L "${CLAMAV_MIRROR/${f}" --output "${f}" --silent 
- rc=$(($rc + $?)) 
+    curl -L "${CLAMAV_MIRROR/${f}" --output "${f}" --silent
+    rc=$(($rc + $?)) 
+    cp -pv ${f} ./ 
+    rc=$(($rc + $?))
+    rm -f ${f}
 done
-cd -
-
-cp -pv database/* ./
-rc=$(($rc + $?)) 
-
-rm -rf database/
-rc=$(($rc + $?)) 
 
 # Fix source directory permissions
 fix-permissions ./
-rc=$(($rc + $?)) 
+rc=$(($rc + $?))    
 
 
 if [ $rc -eq 0 ]; then
