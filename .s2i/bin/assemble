@@ -26,7 +26,7 @@ fi
 
 echo "---> Getting ClamAV files"
 
-CLAMAV_FILES=${CLAMAV_FILES:-"main.cvd daily.cvd bytecode.cvd"}
+CLAMAV_FILES=${CLAMAV_FILES:-"main.cvd daily.cvd daily.cld bytecode.cvd"}
 
 echo "files: $CLAMAV_FILES"
 CLAMAV_MIRROR=${CLAMAV_MIRROR:-"https://database.clamav.net"}
