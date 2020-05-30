@@ -57,3 +57,11 @@ s2i build https://github.com/bigg01/s2i-clamav-mirror.git --docker-image=centos/
 
 
  s2i build https://github.com/bigg01/s2i-clamav-mirror.git centos/nginx-116-centos7:latest clamav-mirror
+
+
+
+ s2i build https://github.com/bigg01/s2i-clamav-mirror.git centos/nginx-116-centos7:latest clamav-mirror
+---> Installing application source
+---> Copying nginx start-hook scripts...
+Build completed successfully
+ docker run -it --rm clamav-mirror  /bin/ls 
