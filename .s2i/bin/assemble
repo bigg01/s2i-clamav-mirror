@@ -32,6 +32,7 @@ done
 fix-permissions ./
 rc=$(($rc + $?))    
 
+echo $rc
 
 if [ $rc -eq 0 ]; then
     echo "ClamAV get files successfull"
