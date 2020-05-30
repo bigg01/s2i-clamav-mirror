@@ -22,11 +22,12 @@ echo "files: $CLAMAV_FILES"
 #CLAMAV_MIRROR=${CLAMAV_MIRROR_REMOTE:-"https://database.clamav.net"}
 CLAMAV_MIRROR="https://database.clamav.net"
 
-echo "from mirro: $CLAMAV_MIRROR"
+echo "from mirror: $CLAMAV_MIRROR"
 
 for f in $CLAMAV_FILES
  do
-    curl -L "${CLAMAV_MIRROR/${f}" --output "${f}" --silent
+    #curl -L "${CLAMAV_MIRROR/${f}" --output "${f}" --silent
+    echo "curl -L \"${CLAMAV_MIRROR/${f}\" --output \"${f}\" --silent"
     rc=$(($rc + $?)) 
     cp -pv ${f} ./ 
     rc=$(($rc + $?))
